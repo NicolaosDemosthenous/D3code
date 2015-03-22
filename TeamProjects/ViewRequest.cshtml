@@ -1,0 +1,24 @@
+﻿@model IList<TeamProjects.Models.Request>
+
+
+@{
+    ViewBag.Title = "ViewRequest";
+}
+
+<h2>View Request</h2>
+
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr><th>Request ID</th><th>Status</th><th>Day</th></tr>
+      
+         @foreach (var item in Model) { 
+<tr>
+        <td>@item.requestID </td>
+        <td>@item.status</td>    
+        <td>@item.day</td>
+</tr>
+ }
+      
+  </table>
+</div>

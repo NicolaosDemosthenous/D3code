@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db9827c0401d468ab102b90c086f4fd7" Name="Diagram1">
+        <EntityTypeShape EntityType="team07Model.Building" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.Facility" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.Module" Width="1.5" PointX="5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.Park" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.Preference" Width="1.5" PointX="5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.Request" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.Room" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.Round" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.User" Width="1.5" PointX="2.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="team07Model.Week" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="team07Model.FK_Building_Park" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.FK_Room_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.FK_Module_User" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.FK_Park_Park" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.FK_Preferences_User" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.FK_Request_Week" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.BookedRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.PreferredRoom" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.RequestFacilities" ManuallyRouted="false" />
+        <AssociationConnector Association="team07Model.RoomFacilities" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

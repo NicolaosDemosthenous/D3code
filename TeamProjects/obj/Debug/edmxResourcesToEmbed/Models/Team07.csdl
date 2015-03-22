@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="team07Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="team07Entities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Buildings" EntityType="team07Model.Building" />
+    <EntitySet Name="Facilities" EntityType="team07Model.Facility" />
+    <EntitySet Name="Modules" EntityType="team07Model.Module" />
+    <EntitySet Name="Parks" EntityType="team07Model.Park" />
+    <EntitySet Name="Preferences" EntityType="team07Model.Preference" />
+    <EntitySet Name="Requests" EntityType="team07Model.Request" />
+    <EntitySet Name="Rooms" EntityType="team07Model.Room" />
+    <EntitySet Name="Rounds" EntityType="team07Model.Round" />
+    <EntitySet Name="Users" EntityType="team07Model.User" />
+    <EntitySet Name="Weeks" EntityType="team07Model.Week" />
+    <AssociationSet Name="FK_Building_Park" Association="team07Model.FK_Building_Park">
+      <End Role="Park" EntitySet="Parks" />
+      <End Role="Building" EntitySet="Buildings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Building" Association="team07Model.FK_Room_Building">
+      <End Role="Building" EntitySet="Buildings" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_User" Association="team07Model.FK_Module_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Module" EntitySet="Modules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Park_Park" Association="team07Model.FK_Park_Park">
+      <End Role="Park" EntitySet="Parks" />
+      <End Role="Park1" EntitySet="Parks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Preferences_User" Association="team07Model.FK_Preferences_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Preferences" EntitySet="Preferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Week" Association="team07Model.FK_Request_Week">
+      <End Role="Week" EntitySet="Weeks" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="BookedRoom" Association="team07Model.BookedRoom">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="PreferredRoom" Association="team07Model.PreferredRoom">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="RequestFacilities" Association="team07Model.RequestFacilities">
+      <End Role="Facility" EntitySet="Facilities" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="RoomFacilities" Association="team07Model.RoomFacilities">
+      <End Role="Facility" EntitySet="Facilities" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Building">
+    <Key>
+      <PropertyRef Name="buildingID" />
+    </Key>
+    <Property Name="buildingID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="buildingName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="parkID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Park" Relationship="team07Model.FK_Building_Park" FromRole="Building" ToRole="Park" />
+    <NavigationProperty Name="Rooms" Relationship="team07Model.FK_Room_Building" FromRole="Building" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Facility">
+    <Key>
+      <PropertyRef Name="facilityID" />
+    </Key>
+    <Property Name="facilityID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="facilityName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Requests" Relationship="team07Model.RequestFacilities" FromRole="Facility" ToRole="Request" />
+    <NavigationProperty Name="Rooms" Relationship="team07Model.RoomFacilities" FromRole="Facility" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="moduleID" />
+    </Key>
+    <Property Name="moduleCode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="moduleTitle" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="moduleID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="User" Relationship="team07Model.FK_Module_User" FromRole="Module" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Park">
+    <Key>
+      <PropertyRef Name="parkID" />
+    </Key>
+    <Property Name="parkID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="parkName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Buildings" Relationship="team07Model.FK_Building_Park" FromRole="Park" ToRole="Building" />
+    <NavigationProperty Name="Park1" Relationship="team07Model.FK_Park_Park" FromRole="Park" ToRole="Park1" />
+    <NavigationProperty Name="Park2" Relationship="team07Model.FK_Park_Park" FromRole="Park1" ToRole="Park" />
+  </EntityType>
+  <EntityType Name="Preference">
+    <Key>
+      <PropertyRef Name="preferencesID" />
+    </Key>
+    <Property Name="preferencesID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="period" Type="Int32" Nullable="false" />
+    <Property Name="hr24Format" Type="Int32" Nullable="false" />
+    <Property Name="defaultLocation" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="defaultPage" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="header1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="header2" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="header3" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="User" Relationship="team07Model.FK_Preferences_User" FromRole="Preferences" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="requestID" />
+    </Key>
+    <Property Name="requestID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="moduleCode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="weekID" Type="Int32" Nullable="false" />
+    <Property Name="day" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="periodStart" Type="Int32" Nullable="false" />
+    <Property Name="periodEnd" Type="Int32" Nullable="false" />
+    <Property Name="semester" Type="Int32" Nullable="false" />
+    <Property Name="year" Type="Int32" Nullable="false" />
+    <Property Name="round" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Week" Relationship="team07Model.FK_Request_Week" FromRole="Request" ToRole="Week" />
+    <NavigationProperty Name="Rooms" Relationship="team07Model.BookedRoom" FromRole="Request" ToRole="Room" />
+    <NavigationProperty Name="Rooms1" Relationship="team07Model.PreferredRoom" FromRole="Request" ToRole="Room" />
+    <NavigationProperty Name="Facilities" Relationship="team07Model.RequestFacilities" FromRole="Request" ToRole="Facility" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="roomID" />
+    </Key>
+    <Property Name="roomID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="roomName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="capacity" Type="Int32" Nullable="false" />
+    <Property Name="buildingID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Building" Relationship="team07Model.FK_Room_Building" FromRole="Room" ToRole="Building" />
+    <NavigationProperty Name="Requests" Relationship="team07Model.BookedRoom" FromRole="Room" ToRole="Request" />
+    <NavigationProperty Name="Requests1" Relationship="team07Model.PreferredRoom" FromRole="Room" ToRole="Request" />
+    <NavigationProperty Name="Facilities" Relationship="team07Model.RoomFacilities" FromRole="Room" ToRole="Facility" />
+  </EntityType>
+  <EntityType Name="Round">
+    <Key>
+      <PropertyRef Name="RoundID" />
+    </Key>
+    <Property Name="RoundID" Type="Int32" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="End_Date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="deptName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="deptCode" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Modules" Relationship="team07Model.FK_Module_User" FromRole="User" ToRole="Module" />
+    <NavigationProperty Name="Preferences" Relationship="team07Model.FK_Preferences_User" FromRole="User" ToRole="Preferences" />
+  </EntityType>
+  <EntityType Name="Week">
+    <Key>
+      <PropertyRef Name="weekID" />
+    </Key>
+    <Property Name="weekID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="week1" Type="Int32" Nullable="false" />
+    <Property Name="week2" Type="Int32" Nullable="false" />
+    <Property Name="week3" Type="Int32" Nullable="false" />
+    <Property Name="week4" Type="Int32" Nullable="false" />
+    <Property Name="week5" Type="Int32" Nullable="false" />
+    <Property Name="week6" Type="Int32" Nullable="false" />
+    <Property Name="week7" Type="Int32" Nullable="false" />
+    <Property Name="week8" Type="Int32" Nullable="false" />
+    <Property Name="week9" Type="Int32" Nullable="false" />
+    <Property Name="week10" Type="Int32" Nullable="false" />
+    <Property Name="week11" Type="Int32" Nullable="false" />
+    <Property Name="week12" Type="Int32" Nullable="false" />
+    <Property Name="week13" Type="Int32" Nullable="false" />
+    <Property Name="week14" Type="Int32" Nullable="false" />
+    <Property Name="week15" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="team07Model.FK_Request_Week" FromRole="Week" ToRole="Request" />
+  </EntityType>
+  <Association Name="FK_Building_Park">
+    <End Role="Park" Type="team07Model.Park" Multiplicity="1" />
+    <End Role="Building" Type="team07Model.Building" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Park">
+        <PropertyRef Name="parkID" />
+      </Principal>
+      <Dependent Role="Building">
+        <PropertyRef Name="parkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Building">
+    <End Role="Building" Type="team07Model.Building" Multiplicity="1" />
+    <End Role="Room" Type="team07Model.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Building">
+        <PropertyRef Name="buildingID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="buildingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_User">
+    <End Role="User" Type="team07Model.User" Multiplicity="1" />
+    <End Role="Module" Type="team07Model.Module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Module">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Park_Park">
+    <End Role="Park" Type="team07Model.Park" Multiplicity="1" />
+    <End Role="Park1" Type="team07Model.Park" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Park">
+        <PropertyRef Name="parkID" />
+      </Principal>
+      <Dependent Role="Park1">
+        <PropertyRef Name="parkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Preferences_User">
+    <End Role="User" Type="team07Model.User" Multiplicity="1" />
+    <End Role="Preferences" Type="team07Model.Preference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Preferences">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Week">
+    <End Role="Week" Type="team07Model.Week" Multiplicity="1" />
+    <End Role="Request" Type="team07Model.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Week">
+        <PropertyRef Name="weekID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="weekID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookedRoom">
+    <End Role="Request" Type="team07Model.Request" Multiplicity="*" />
+    <End Role="Room" Type="team07Model.Room" Multiplicity="*" />
+  </Association>
+  <Association Name="PreferredRoom">
+    <End Role="Request" Type="team07Model.Request" Multiplicity="*" />
+    <End Role="Room" Type="team07Model.Room" Multiplicity="*" />
+  </Association>
+  <Association Name="RequestFacilities">
+    <End Role="Facility" Type="team07Model.Facility" Multiplicity="*" />
+    <End Role="Request" Type="team07Model.Request" Multiplicity="*" />
+  </Association>
+  <Association Name="RoomFacilities">
+    <End Role="Facility" Type="team07Model.Facility" Multiplicity="*" />
+    <End Role="Room" Type="team07Model.Room" Multiplicity="*" />
+  </Association>
+</Schema>

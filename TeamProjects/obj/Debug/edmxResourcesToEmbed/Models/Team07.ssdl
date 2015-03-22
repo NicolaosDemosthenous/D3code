@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="team07Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="team07ModelStoreContainer">
+    <EntitySet Name="BookedRoom" EntityType="team07Model.Store.BookedRoom" store:Type="Tables" store:Schema="team07" store:Name="BookedRoom">
+      <DefiningQuery>SELECT 
+      [BookedRoom].[requestID] AS [requestID], 
+      [BookedRoom].[roomID] AS [roomID]
+      FROM [team07].[BookedRoom] AS [BookedRoom]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Building" EntityType="team07Model.Store.Building" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="Facility" EntityType="team07Model.Store.Facility" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="Module" EntityType="team07Model.Store.Module" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="Park" EntityType="team07Model.Store.Park" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="Preferences" EntityType="team07Model.Store.Preferences" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="PreferredRoom" EntityType="team07Model.Store.PreferredRoom" store:Type="Tables" store:Schema="team07" store:Name="PreferredRoom">
+      <DefiningQuery>SELECT 
+      [PreferredRoom].[requestID] AS [requestID], 
+      [PreferredRoom].[roomID] AS [roomID]
+      FROM [team07].[PreferredRoom] AS [PreferredRoom]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Request" EntityType="team07Model.Store.Request" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="RequestFacilities" EntityType="team07Model.Store.RequestFacilities" store:Type="Tables" store:Schema="team07" store:Name="RequestFacilities">
+      <DefiningQuery>SELECT 
+      [RequestFacilities].[requestID] AS [requestID], 
+      [RequestFacilities].[facilityID] AS [facilityID]
+      FROM [team07].[RequestFacilities] AS [RequestFacilities]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Room" EntityType="team07Model.Store.Room" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="RoomFacilities" EntityType="team07Model.Store.RoomFacilities" store:Type="Tables" store:Schema="team07" store:Name="RoomFacilities">
+      <DefiningQuery>SELECT 
+      [RoomFacilities].[roomID] AS [roomID], 
+      [RoomFacilities].[facilityID] AS [facilityID]
+      FROM [team07].[RoomFacilities] AS [RoomFacilities]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Round" EntityType="team07Model.Store.Round" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="User" EntityType="team07Model.Store.User" store:Type="Tables" Schema="team07" />
+    <EntitySet Name="Week" EntityType="team07Model.Store.Week" store:Type="Tables" Schema="team07" />
+    <AssociationSet Name="FK_BookedRoom_Request" Association="team07Model.Store.FK_BookedRoom_Request">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="BookedRoom" EntitySet="BookedRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookedRoom_Room" Association="team07Model.Store.FK_BookedRoom_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="BookedRoom" EntitySet="BookedRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Building_Park" Association="team07Model.Store.FK_Building_Park">
+      <End Role="Park" EntitySet="Park" />
+      <End Role="Building" EntitySet="Building" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Module_User" Association="team07Model.Store.FK_Module_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Module" EntitySet="Module" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Park_Park" Association="team07Model.Store.FK_Park_Park">
+      <End Role="Park" EntitySet="Park" />
+      <End Role="Park1" EntitySet="Park" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Preferences_User" Association="team07Model.Store.FK_Preferences_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Preferences" EntitySet="Preferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreferredRoom_Request" Association="team07Model.Store.FK_PreferredRoom_Request">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="PreferredRoom" EntitySet="PreferredRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreferredRoom_Room" Association="team07Model.Store.FK_PreferredRoom_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="PreferredRoom" EntitySet="PreferredRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Week" Association="team07Model.Store.FK_Request_Week">
+      <End Role="Week" EntitySet="Week" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestFacilities_Facility" Association="team07Model.Store.FK_RequestFacilities_Facility">
+      <End Role="Facility" EntitySet="Facility" />
+      <End Role="RequestFacilities" EntitySet="RequestFacilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestFacilities_Request" Association="team07Model.Store.FK_RequestFacilities_Request">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="RequestFacilities" EntitySet="RequestFacilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Building" Association="team07Model.Store.FK_Room_Building">
+      <End Role="Building" EntitySet="Building" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomFacilities_Facility" Association="team07Model.Store.FK_RoomFacilities_Facility">
+      <End Role="Facility" EntitySet="Facility" />
+      <End Role="RoomFacilities" EntitySet="RoomFacilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomFacilities_Room" Association="team07Model.Store.FK_RoomFacilities_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="RoomFacilities" EntitySet="RoomFacilities" />
+    </AssociationSet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'team07.team07.BookedRoom' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BookedRoom">
+    <Key>
+      <PropertyRef Name="requestID" />
+      <PropertyRef Name="roomID" />
+    </Key>
+    <Property Name="requestID" Type="int" Nullable="false" />
+    <Property Name="roomID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Building">
+    <Key>
+      <PropertyRef Name="buildingID" />
+    </Key>
+    <Property Name="buildingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="buildingName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="parkID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Facility">
+    <Key>
+      <PropertyRef Name="facilityID" />
+    </Key>
+    <Property Name="facilityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="facilityName" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="moduleID" />
+    </Key>
+    <Property Name="moduleCode" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="moduleTitle" Type="varchar(max)" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="moduleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Park">
+    <Key>
+      <PropertyRef Name="parkID" />
+    </Key>
+    <Property Name="parkID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="parkName" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Preferences">
+    <Key>
+      <PropertyRef Name="preferencesID" />
+    </Key>
+    <Property Name="preferencesID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="period" Type="int" Nullable="false" />
+    <Property Name="hr24Format" Type="int" Nullable="false" />
+    <Property Name="defaultLocation" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="defaultPage" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="header1" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="header2" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="header3" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'team07.team07.PreferredRoom' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="PreferredRoom">
+    <Key>
+      <PropertyRef Name="requestID" />
+      <PropertyRef Name="roomID" />
+    </Key>
+    <Property Name="requestID" Type="int" Nullable="false" />
+    <Property Name="roomID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="requestID" />
+    </Key>
+    <Property Name="requestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="moduleCode" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="status" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="weekID" Type="int" Nullable="false" />
+    <Property Name="day" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="periodStart" Type="int" Nullable="false" />
+    <Property Name="periodEnd" Type="int" Nullable="false" />
+    <Property Name="semester" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="round" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'team07.team07.RequestFacilities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="RequestFacilities">
+    <Key>
+      <PropertyRef Name="requestID" />
+      <PropertyRef Name="facilityID" />
+    </Key>
+    <Property Name="requestID" Type="int" Nullable="false" />
+    <Property Name="facilityID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="roomID" />
+    </Key>
+    <Property Name="roomID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="roomName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="capacity" Type="int" Nullable="false" />
+    <Property Name="buildingID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'team07.team07.RoomFacilities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="RoomFacilities">
+    <Key>
+      <PropertyRef Name="roomID" />
+      <PropertyRef Name="facilityID" />
+    </Key>
+    <Property Name="roomID" Type="int" Nullable="false" />
+    <Property Name="facilityID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Round">
+    <Key>
+      <PropertyRef Name="RoundID" />
+    </Key>
+    <Property Name="RoundID" Type="int" Nullable="false" />
+    <Property Name="Start_Date" Type="datetime" />
+    <Property Name="End_Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="deptName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="deptCode" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Week">
+    <Key>
+      <PropertyRef Name="weekID" />
+    </Key>
+    <Property Name="weekID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="week1" Type="int" Nullable="false" />
+    <Property Name="week2" Type="int" Nullable="false" />
+    <Property Name="week3" Type="int" Nullable="false" />
+    <Property Name="week4" Type="int" Nullable="false" />
+    <Property Name="week5" Type="int" Nullable="false" />
+    <Property Name="week6" Type="int" Nullable="false" />
+    <Property Name="week7" Type="int" Nullable="false" />
+    <Property Name="week8" Type="int" Nullable="false" />
+    <Property Name="week9" Type="int" Nullable="false" />
+    <Property Name="week10" Type="int" Nullable="false" />
+    <Property Name="week11" Type="int" Nullable="false" />
+    <Property Name="week12" Type="int" Nullable="false" />
+    <Property Name="week13" Type="int" Nullable="false" />
+    <Property Name="week14" Type="int" Nullable="false" />
+    <Property Name="week15" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BookedRoom_Request">
+    <End Role="Request" Type="team07Model.Store.Request" Multiplicity="1" />
+    <End Role="BookedRoom" Type="team07Model.Store.BookedRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="requestID" />
+      </Principal>
+      <Dependent Role="BookedRoom">
+        <PropertyRef Name="requestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookedRoom_Room">
+    <End Role="Room" Type="team07Model.Store.Room" Multiplicity="1" />
+    <End Role="BookedRoom" Type="team07Model.Store.BookedRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomID" />
+      </Principal>
+      <Dependent Role="BookedRoom">
+        <PropertyRef Name="roomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Building_Park">
+    <End Role="Park" Type="team07Model.Store.Park" Multiplicity="1" />
+    <End Role="Building" Type="team07Model.Store.Building" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Park">
+        <PropertyRef Name="parkID" />
+      </Principal>
+      <Dependent Role="Building">
+        <PropertyRef Name="parkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Module_User">
+    <End Role="User" Type="team07Model.Store.User" Multiplicity="1" />
+    <End Role="Module" Type="team07Model.Store.Module" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Module">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Park_Park">
+    <End Role="Park" Type="team07Model.Store.Park" Multiplicity="1" />
+    <End Role="Park1" Type="team07Model.Store.Park" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Park">
+        <PropertyRef Name="parkID" />
+      </Principal>
+      <Dependent Role="Park1">
+        <PropertyRef Name="parkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Preferences_User">
+    <End Role="User" Type="team07Model.Store.User" Multiplicity="1" />
+    <End Role="Preferences" Type="team07Model.Store.Preferences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Preferences">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreferredRoom_Request">
+    <End Role="Request" Type="team07Model.Store.Request" Multiplicity="1" />
+    <End Role="PreferredRoom" Type="team07Model.Store.PreferredRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="requestID" />
+      </Principal>
+      <Dependent Role="PreferredRoom">
+        <PropertyRef Name="requestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreferredRoom_Room">
+    <End Role="Room" Type="team07Model.Store.Room" Multiplicity="1" />
+    <End Role="PreferredRoom" Type="team07Model.Store.PreferredRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomID" />
+      </Principal>
+      <Dependent Role="PreferredRoom">
+        <PropertyRef Name="roomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Week">
+    <End Role="Week" Type="team07Model.Store.Week" Multiplicity="1" />
+    <End Role="Request" Type="team07Model.Store.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Week">
+        <PropertyRef Name="weekID" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="weekID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestFacilities_Facility">
+    <End Role="Facility" Type="team07Model.Store.Facility" Multiplicity="1" />
+    <End Role="RequestFacilities" Type="team07Model.Store.RequestFacilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="facilityID" />
+      </Principal>
+      <Dependent Role="RequestFacilities">
+        <PropertyRef Name="facilityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestFacilities_Request">
+    <End Role="Request" Type="team07Model.Store.Request" Multiplicity="1" />
+    <End Role="RequestFacilities" Type="team07Model.Store.RequestFacilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="requestID" />
+      </Principal>
+      <Dependent Role="RequestFacilities">
+        <PropertyRef Name="requestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Building">
+    <End Role="Building" Type="team07Model.Store.Building" Multiplicity="1" />
+    <End Role="Room" Type="team07Model.Store.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Building">
+        <PropertyRef Name="buildingID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="buildingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomFacilities_Facility">
+    <End Role="Facility" Type="team07Model.Store.Facility" Multiplicity="1" />
+    <End Role="RoomFacilities" Type="team07Model.Store.RoomFacilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="facilityID" />
+      </Principal>
+      <Dependent Role="RoomFacilities">
+        <PropertyRef Name="facilityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomFacilities_Room">
+    <End Role="Room" Type="team07Model.Store.Room" Multiplicity="1" />
+    <End Role="RoomFacilities" Type="team07Model.Store.RoomFacilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomID" />
+      </Principal>
+      <Dependent Role="RoomFacilities">
+        <PropertyRef Name="roomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

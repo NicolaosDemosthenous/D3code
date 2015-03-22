@@ -1,0 +1,34 @@
+﻿@model IList<TeamProjects.Models.User>
+
+@{
+    ViewBag.Title = "LogIn";
+}
+
+<br />
+@using(Html.BeginForm("Login","Account"))
+{
+  <div class="form-group">
+    <label for="departmentUsername">Department</label>
+    <select name="deptCode" class="form-control" id="departmentUsername">
+        
+        @foreach (var item in Model)
+        {    
+            <option value="@item.deptCode">@item.deptCode</option>
+        }
+    
+    </select>
+
+
+
+  </div>
+  <div class="form-group">
+    <label for="departmentPassword">Password</label>
+    <input type="password" name="password" class="form-control" id="departmentPassword" placeholder="Password">
+  </div>
+  <div align="center">
+    <button type="submit" class="btn btn-default">Log In</button>
+  </div>
+
+      
+    
+}@*  *@
